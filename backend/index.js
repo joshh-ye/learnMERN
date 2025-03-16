@@ -7,12 +7,19 @@ const app = express()
 
 app.use(express.json());
 
+
+app.use(cors({
+    origin: "http://localhost:5555",
+    methods: ['GET','POST','PUT','DELETE'],
+    allowedHeaders: ['Content-Type'],
+}));
+
 app.get('/', (req, res) => {
     console.log(req);
     return res.status(234).send("hi");
 }) //endpoint, callback function (handler)
 
-app.listen
+app.listen;
 
 app.use('/books', Route);
 
