@@ -17,6 +17,33 @@ app.listen(PORT, () => {
 
 app.use(express.json());
 
+//all books
+app.get('/books', async (req, res) => {
+    try {
+        const books = await Book.find({});
+
+        return res.status(200).send({
+            count: books.length,
+            data: books
+    });
+
+    } catch (error) {
+        console.log(error.message);
+        console.status(500).send({message: error.message})
+    }
+})
+
+
+app.get('/books', async (req, res) => {
+    try {
+        const books = await Book.find({});
+
+        return res.status(200).send(books);
+    } catch (error) {
+        console.log(error.message);
+        console.status(500).send({message: error.message})
+    }
+})
 
 app.post('/books', async (req, res) => {
     try {
