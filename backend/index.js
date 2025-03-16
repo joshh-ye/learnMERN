@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import {PORT, mongoDBURL} from "./config.js";
 import mongoose, { mongo } from "mongoose";
 import {Book} from "./models/bookModel.js";
@@ -63,6 +63,23 @@ app.post('/books', async (req, res) => {
         res.status(500).send({message: error.message});
     }
 });
+
+
+//updating books
+app.put(`/books/:id`, async (req, res) => {
+    try {
+        const {id} = req.params;
+        const request = await Book.findByIdAndUpdate(id, req.body);
+        
+        
+        return res.status(200).send({message: 'book successfully updated', body: req.body});
+    } catch (error) {
+        console.log("oh no")
+    }
+});
+
+
+
 
 mongoose
 .connect(mongoDBURL)
