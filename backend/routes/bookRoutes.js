@@ -6,21 +6,21 @@ const Route = express.Router();
 
 Route.use(express.json());
 
-//all books
-Route.get('/', async (req, res) => {
-    try {
-        const books = await Book.find({});
+// //all books
+// Route.get('/', async (req, res) => {
+//     try {
+//         const books = await Book.find({});
 
-        return res.status(200).send({
-            count: books.length,
-            data: books
-    });
+//         return res.status(200).send({
+//             count: books.length,
+//             data: books
+//     });
 
-    } catch (error) {
-        console.log(error.message);
-        console.status(500).send({message: error.message})
-    }
-})
+//     } catch (error) {
+//         console.log(error.message);
+//         console.status(500).send({message: error.message})
+//     }
+// })
 
 
 Route.get('/', async (req, res) => {
@@ -42,9 +42,9 @@ Route.post('/', async (req, res) => {
 
         const newbook = {
             title: req.body.title,
-            publishedDate: req.body.publishedDate,
-        };
- 
+            publishedDate: req.body.publishedDate
+        }
+
         const newbook2 = await Book.create(newbook);
         return res.status(201).send(newbook2);
     } catch (error) {
@@ -56,7 +56,8 @@ Route.post('/', async (req, res) => {
 
 //updating books
 Route.put(`/:id`, async (req, res) => {
-    try {
+    try {       
+
         const {id} = req.params;
         const request = await Book.findByIdAndUpdate(id, req.body);
         

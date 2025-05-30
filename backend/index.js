@@ -24,14 +24,22 @@ app.get('/', (req, res) => {
 
 app.use('/books', Route);
 
+app.get('/test', (req, res) => {
+    res.send("Hello world")
+})
+
+
 mongoose
 .connect(mongoDBURL)
 .then(() => {
+    // When successfully connected to MongoDB database
     console.log("database succcess");
+    // Start Express server listening on specified PORT
     app.listen(PORT, () => {
         console.log(`listening on ${PORT}`)
     })
 })
 .catch((error) => {
+    // If there's an error connecting to database, log it
     console.log(error);
 })
