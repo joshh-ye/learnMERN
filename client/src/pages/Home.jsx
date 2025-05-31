@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
 import { BsInfoCircle } from 'react-icons/bs'
-import { AiOutlineEdit } from 'react-icons/ai'
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 import Spinner from '../components/Spinner'
 
 const Home = () => {
@@ -31,10 +31,10 @@ const Home = () => {
             <MdOutlineAddBox className = 'text-white text-3xl' />
           </Link>
         </div>
-        {loading ? (
+        {loading ? ( 
           <Spinner />
         ) : (
-          <table className = 'min-w-full table-auto'>
+          <table className = 'min-w-full border-seperate border-spacing-2 table-auto'>
             <thead>
               <tr className = 'bg-blue-800 text-gray-50'>
                 <th className = 'border border-slate-600 rounded-md'>No</th>
@@ -55,11 +55,14 @@ const Home = () => {
                   <td className = 'border border-slate-700 rounded-md'>
                     <div className = 'flex justify-center items-center gap-x-2'>
                       <Link to = {`/books/details/${book._id}`}>
-                        <BsInfoCircle className = 'text-blue-300' />
+                        <BsInfoCircle className = 'text-blue-600' />
                       </Link>
                       <Link to = {`/books/edit/${book._id}`}>
                         <AiOutlineEdit className = 'text-green-600' />
                 
+                      </Link>
+                      <Link to = {`/books/delete/${book._id}`}>
+                      <AiOutlineDelete className = 'text-red-600'></AiOutlineDelete>
                       </Link>
 
                     </div>
