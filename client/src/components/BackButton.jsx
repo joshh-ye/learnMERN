@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom'
-import { AiFillAlipayCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
-const BackButton = ({Destination = '/ '}) => {
+const BackButton = ({ Destination = "/ " }) => {
   return (
     <div>
-        <Link to = {Destination}>
-        <AiFillAlipayCircle />
-        </Link>
+      <Link to={Destination}>
+        <IoArrowBack />
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default BackButton
+export default BackButton;
