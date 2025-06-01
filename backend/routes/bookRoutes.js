@@ -81,4 +81,25 @@ Route.put(`/:id`, async (req, res) => {
 });
 
 
+Route.delete('/:id', async (req, res) => {
+    
+    try {
+        const {id} = req.params;
+        const deleteStatus = await Book.findByIdAndDelete(id);
+
+        if (!deleteStatus) {
+            return res.status(500).send({message: 'id not found'})
+        }
+
+
+
+        return res.status(201).send({message: 'Book deleted'});
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({message: error.message});
+    }
+    
+
+})
+
 export default Route;
