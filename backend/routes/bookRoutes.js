@@ -34,6 +34,18 @@ Route.get('/', async (req, res) => {
     }
 })
 
+Route.get('/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const book = await Book.findById(id);
+
+        return res.status(200).send(book);
+    } catch (error) {
+        console.log(error.message);
+        console.status(500).send({message: error.message})
+    }
+})
+
 Route.post('/', async (req, res) => {
     try {
         if (!req.body.title || !req.body.publishedDate) {
