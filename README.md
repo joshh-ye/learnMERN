@@ -1,4 +1,4 @@
-This project is me learning full stack website building and deployment (done on Render for backend, Vercel for frontend).
+This project was created to learn how to build and deploy a full stack web application with a database, using Render for backend, and Vercel for the frontend.
 Followed the following tutorial: https://www.youtube.com/watch?v=-42K44A1oMA
 
 Website deployed here: learn-mern-psi.vercel.app
