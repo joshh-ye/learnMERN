@@ -12,7 +12,7 @@ const DeleteBook = () => {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/books/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/books/${id}`);
       setLoading(false);
       navigate("/");
     } catch (err) {

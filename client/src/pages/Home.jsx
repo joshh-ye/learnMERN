@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
+import { MdOutlineAddBox } from "react-icons/md";
 import { BsInfoCircle } from "react-icons/bs";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Spinner from "../components/Spinner";
@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/books")
+      .get(`${import.meta.env.VITE_API_URL}/books`)
       .then((res) => {
         setBooks(res.data);
         setLoading(false);
@@ -25,59 +25,75 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bolditem-center">All Books</h1>
-        <Link to="/books/create">
-          <MdOutlineAddBox className="text-black text-3xl" />
+    <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-8">
+      {/* Header Section */}
+      <div className="max-w-4xl mx-auto mb-8 text-center">
+        <h1 className="text-4xl font-extrabold text-blue-700 mb-2">Book Library</h1>
+        <p className="text-gray-600 text-lg mb-4">Manage your book collection with ease</p>
+        <Link
+          to="/books/create"
+          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition-colors duration-200"
+        >
+          <MdOutlineAddBox className="text-2xl" />
+          Add Book
         </Link>
       </div>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <table className="min-w-full border-seperate border-spacing-2 table-auto">
-          <thead>
-            <tr className="bg-pink-800 text-gray-50">
-              <th className="border border-slate-600">No</th>
-              <th className="border border-slate-600">Title</th>
-              <th className="border border-slate-600">Author</th>
-              <th className="border border-slate-600">Publish Year</th>
-              <th className="border border-slate-600">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book, index) => (
-              <tr key={book._id}>
-                <td className="border border-slate-700 rounded-md">
-                  {index + 1}
-                </td>
-                <td className="border border-slate-700 rounded-md">
-                  {book.title}
-                </td>
-                <td className="border border-slate-700 rounded-md">
-                  {book.author}
-                </td>
-                <td className="border border-slate-700 rounded-md">
-                  {book.publishedDate}
-                </td>
-                <td className="border border-slate-700 rounded-md">
-                  <div className="flex justify-center items-center gap-x-2">
-                    <Link to={`/books/details/${book._id}`}>
-                      <BsInfoCircle className="text-blue-600" />
-                    </Link>
-                    <Link to={`/books/edit/${book._id}`}>
-                      <AiOutlineEdit className="text-green-600" />
-                    </Link>
-                    <Link to={`/books/delete/${book._id}`}>
-                      <AiOutlineDelete className="text-red-600"></AiOutlineDelete>
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      {/* Main Content Card */}
+      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6">
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <Spinner />
+          </div>
+        ) : books.length === 0 ? (
+          <div className="text-center text-gray-500 text-xl py-16">
+            No books found. Click "Add Book" to get started!
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-separate border-spacing-y-2">
+              <thead>
+                <tr className="bg-blue-600 text-white">
+                  <th className="px-4 py-2 rounded-tl-lg">No</th>
+                  <th className="px-4 py-2">Title</th>
+                  <th className="px-4 py-2">Author</th>
+                  <th className="px-4 py-2">Publish Year</th>
+                  <th className="px-4 py-2 rounded-tr-lg">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {books.map((book, index) => (
+                  <tr
+                    key={book._id}
+                    className={
+                      index % 2 === 0
+                        ? "bg-gray-100 hover:bg-blue-50 transition-colors"
+                        : "bg-white hover:bg-blue-50 transition-colors"
+                    }
+                  >
+                    <td className="px-4 py-2 text-center font-medium text-gray-700 rounded-l-lg">{index + 1}</td>
+                    <td className="px-4 py-2 text-gray-800">{book.title}</td>
+                    <td className="px-4 py-2 text-gray-800">{book.author}</td>
+                    <td className="px-4 py-2 text-gray-800">{book.publishedDate}</td>
+                    <td className="px-4 py-2 rounded-r-lg">
+                      <div className="flex justify-center items-center gap-x-3">
+                        <Link to={`/books/details/${book._id}`} title="Details">
+                          <BsInfoCircle className="text-blue-600 text-xl hover:scale-110 transition-transform" />
+                        </Link>
+                        <Link to={`/books/edit/${book._id}`} title="Edit">
+                          <AiOutlineEdit className="text-green-600 text-xl hover:scale-110 transition-transform" />
+                        </Link>
+                        <Link to={`/books/delete/${book._id}`} title="Delete">
+                          <AiOutlineDelete className="text-red-600 text-xl hover:scale-110 transition-transform" />
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
