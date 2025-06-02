@@ -4,9 +4,8 @@ import mongoose, { mongo } from "mongoose";
 import Route from "./routes/bookRoutes.js";
 import cors from "cors";
 
-app.use(cors());
 const app = express()
-
+app.use(cors());
 app.use(express.json());
 
 
