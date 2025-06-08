@@ -29,8 +29,12 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-8">
       {/* Header Section */}
       <div className="max-w-4xl mx-auto mb-8 text-center">
-        <h1 className="text-4xl font-extrabold text-blue-700 mb-2">Book Library</h1>
-        <p className="text-gray-600 text-lg mb-4">Manage your book collection with ease</p>
+        <h1 className="text-4xl font-extrabold text-blue-700 mb-2">
+          Book Library
+        </h1>
+        <p className="text-gray-600 text-lg mb-4">
+          Manage your book collection with ease
+        </p>
         <Link
           to="/books/create"
           className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition-colors duration-200"
@@ -50,7 +54,7 @@ const Home = () => {
             No books found. Click "Add Book" to get started!
           </div>
         ) : (
-         <div className="overflow-x-auto">
+          <div className="overflow-x-auto">
             <table className="min-w-full border-separate border-spacing-y-2">
               <thead>
                 <tr className="bg-blue-600 text-white">
@@ -70,9 +74,15 @@ const Home = () => {
                         : "bg-white hover:bg-blue-50 transition-colors"
                     }
                   >
-                    <td className="px-4 py-2 text-center font-medium text-gray-700 rounded-l-lg">{index + 1}</td>
-                    <td className = "px-4 py-2 text-center font-medium text-gray-700">{book.title}</td>
-                    <td className="px-4 py-2 text-gray-800 text-center">{book.publishedDate}</td>
+                    <td className="px-4 py-2 text-center font-medium text-gray-700 rounded-l-lg">
+                      {index + 1}
+                    </td>
+                    <td className="px-4 py-2 text-center font-medium text-gray-700">
+                      {book.title}
+                    </td>
+                    <td className="px-4 py-2 text-gray-800 text-center">
+                      {book.publishedDate}
+                    </td>
                     <td className="px-4 py-2 rounded-r-lg">
                       <div className="flex justify-center items-center gap-x-3">
                         <Link to={`/books/details/${book._id}`} title="Details">
@@ -89,6 +99,21 @@ const Home = () => {
             </table>
           </div>
         )}
+
+        <div className="mt-10">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            Wikipedia entry
+          </h2>
+          <div className="rounded-md overflow-hidden shadow-xl border-2 border-solid border-sky-800">
+            <iframe
+              src="https://wikipedia.com"
+              title="wiki"
+              height="500"
+              width="100%"
+              style={{ border: "none" }}
+            ></iframe>
+          </div>
+        </div>
       </div>
     </div>
   );
