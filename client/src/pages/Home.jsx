@@ -102,12 +102,12 @@ const Home = () => {
 
         <div className="mt-10">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
-            Wikipedia entry
+            Book wiki
           </h2>
           <div className="rounded-md overflow-hidden shadow-xl border-2 border-solid border-sky-800">
             <iframe
-              src="https://wikipedia.com"
-              title="wiki"
+              src="https://openlibrary.org/"
+              title="book wiki"
               height="500"
               width="100%"
               style={{ border: "none" }}
