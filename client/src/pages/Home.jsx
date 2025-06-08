@@ -56,7 +56,6 @@ const Home = () => {
                 <tr className="bg-blue-600 text-white">
                   <th className="px-4 py-2 rounded-tl-lg">No</th>
                   <th className="px-4 py-2">Title</th>
-                  <th className="px-4 py-2">Author</th>
                   <th className="px-4 py-2">Publish Year</th>
                   <th className="px-4 py-2 rounded-tr-lg">Actions</th>
                 </tr>
@@ -72,16 +71,12 @@ const Home = () => {
                     }
                   >
                     <td className="px-4 py-2 text-center font-medium text-gray-700 rounded-l-lg">{index + 1}</td>
-                    <td className="px-4 py-2 text-gray-800">{book.title}</td>
-                    <td className="px-4 py-2 text-gray-800">{book.author}</td>
-                    <td className="px-4 py-2 text-gray-800">{book.publishedDate}</td>
+                    <td className="px-4 py-2 text-gray-800 text-center">{book.title}</td>
+                    <td className="px-4 py-2 text-gray-800 text-center">{book.publishedDate}</td>
                     <td className="px-4 py-2 rounded-r-lg">
                       <div className="flex justify-center items-center gap-x-3">
                         <Link to={`/books/details/${book._id}`} title="Details">
                           <BsInfoCircle className="text-blue-600 text-xl hover:scale-110 transition-transform" />
-                        </Link>
-                        <Link to={`/books/edit/${book._id}`} title="Edit">
-                          <AiOutlineEdit className="text-green-600 text-xl hover:scale-110 transition-transform" />
                         </Link>
                         <Link to={`/books/delete/${book._id}`} title="Delete">
                           <AiOutlineDelete className="text-red-600 text-xl hover:scale-110 transition-transform" />
