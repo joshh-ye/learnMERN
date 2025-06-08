@@ -14,6 +14,7 @@ const Home = () => {
     setLoading(true);
     axios
       .get(`${import.meta.env.VITE_API_URL}/books`)
+      // .get(`http://localhost:5000/books`)
       .then((res) => {
         setBooks(res.data);
         setLoading(false);
