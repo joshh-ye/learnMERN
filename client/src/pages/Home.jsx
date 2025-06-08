@@ -50,7 +50,7 @@ const Home = () => {
             No books found. Click "Add Book" to get started!
           </div>
         ) : (
-          <div className="overflow-x-auto">
+         <div className="overflow-x-auto">
             <table className="min-w-full border-separate border-spacing-y-2">
               <thead>
                 <tr className="bg-blue-600 text-white">
@@ -71,7 +71,7 @@ const Home = () => {
                     }
                   >
                     <td className="px-4 py-2 text-center font-medium text-gray-700 rounded-l-lg">{index + 1}</td>
-                    <td className="px-4 py-2 text-gray-800 text-center">{book.title}</td>
+                    <td className = "px-4 py-2 text-center font-medium text-gray-700">{book.title}</td>
                     <td className="px-4 py-2 text-gray-800 text-center">{book.publishedDate}</td>
                     <td className="px-4 py-2 rounded-r-lg">
                       <div className="flex justify-center items-center gap-x-3">

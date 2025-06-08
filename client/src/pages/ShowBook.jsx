@@ -24,13 +24,13 @@ const ShowBook = () => {
     }, [id]);
 
     return (
-        <div className='p-4'>
+        <div className='p-4 min-h-screen'>
             <BackButton />
-            <h1>Show Book</h1>
+            <h1 className = "mx-auto font-semibold text-center text-lg bg-blue-400 rounded-md w-fit px-4">Show Book</h1>
             {loading ? (
                 <Spinner />
             ) : (
-                <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
+                <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-fit p-4 mx-auto'>
                     <div className='my-4'>
                         <span className='text-xl mr-4 text-gray-500'>Id</span>
                         <span>{book._id}</span>
